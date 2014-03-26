@@ -1,0 +1,124 @@
+\chapter{Operation}
+\section{System Quick start}
+
+Initialize the system\par
+1. If any cable is hanging disconnected, first verify where it should be. All cables should be connected\par
+2. Verify that PC and PLC are connected to network. During installation, both were connected to a hub and this was connected to ip-local.\par
+3. PLC has no switch, it starts to work as soon it is connected and power is stable. If not connected, do this first. An orange LED will turn off when ready.\par
+4. Cedrat has two ON switches. One in the back (main) and one in the front (connect and disconnects all input/outputs).\par
+PI has one ON switch in the back.\par
+PC (Laptop) has a switch on the front after opening the screen.\par
+These three can be turn on in any order.\par
+5. Let PI and Cedrat control electronics to heat up for 10 mins if first use during the day.\par
+6. If the computer went to sleep or it is the first time in the day. It will be necessary to reinitialize the PLC. Follow these instructions.\par
+1. Open the «National Instruments - Measurement \& Automation Explorer NI MAX«.\par
+2. Select Périphériques et Interfaces\par
+3. select Périphériques réseau.\par
+4. If it is recognized, right-click over the peripheric and select «Réinitialiser le châssis«. A success prompt will appear some seconds after.\par
+7. Open any of the previous programs designed in Labview to operate the system. Some of them can store the info in Excel format.\par
+1. EPICS: if you are using EPICS, use the application:\par
+"Bureau/Actionneurs Piezo/Applis Actionneurs positionnement BPMs - Ethernet - epics.vi" \par
+2. Local system: use any of the avalaible applications\par
+
+Shut down\par
+1. Close all programs\par
+2. Shut down PC, Cedrat and PI control electronics in any order.\par
+PLC is left ON.\par
+How to acquire data\par
+When logged at atf-user.atf-local server, do:\par
+To set voltage value:\par
+Remember to use a PV which ends in Write.\par
+Using one which ends in Read has no effect\par
+\$ caput PVname Value\par
+To get voltage from strain gauges:\par
+Remember to use a PV which ends in Read.\par
+Using one which ends in Write has no effect\par
+\$ caget PVname\par
+\$ camonitor Pvname (or PVnames)\par
+
+\subsection{PVs}
+NOTES\par
+Epics PVs (Process Variables)\par
+Write: sets a value on the DAC.\par
+Read: reads from ADC.\par
+Channels IP:BPM-AB:Mover0 and IP:BPM-C:MoverB are for lateral movement.\par
+
+IP:BPM-AB:Mover0:Read\par
+IP:BPM-AB:Mover0:Write\par
+IP:BPM-AB:Mover1:Read\par
+IP:BPM-AB:Mover1:Write\par
+IP:BPM-AB:Mover2:Read\par
+IP:BPM-AB:Mover2:Write\par
+IP:BPM-AB:Mover3:Read\par
+IP:BPM-AB:Mover3:Write\par 
+
+IP:BPM-C:MoverB:Read\par 
+IP:BPM-C:MoverB:Write\par 
+IP:BPM-C:MoverC:Read\par 
+IP:BPM-C:MoverC:Write\par 
+IP:BPM-C:MoverD:Read\par 
+IP:BPM-C:MoverD:Write\par 
+IP:BPM-C:MoverE:Read\par 
+IP:BPM-C:MoverE:Write\par 
+
+IP:BPM-AB:Temp\par 
+IP:BPM-C:Temp\par 
+
+Older Epics PVs, DO NOT USE (Process Variables)\par 
+These PVs are here for documentation purposes. They are still functional but any new work should be done with previously defined PV in this document.\par 
+Write: sets a value on the DAC.\par 
+Read: reads from ADC.\par 
+Channels Cedrat0 and PIB are for lateral movement.\par 
+
+IPBSM:BPMs:PIB:Write\par 
+IPBSM:BPMs:PIB:Read\par 
+IPBSM:BPMs:PIC:Write\par 
+IPBSM:BPMs:PIC:Read\par 
+IPBSM:BPMs:PID:Write\par 
+IPBSM:BPMs:PID:Read\par 
+IPBSM:BPMs:PIE:Write\par 
+IPBSM:BPMs:PIE:Read\par 
+
+
+IPBSM:BPMs:Cedrat0:Write\par 
+IPBSM:BPMs:Cedrat0:Read\par 
+IPBSM:BPMs:Cedrat1:Write\par 
+IPBSM:BPMs:Cedrat1:Read\par 
+IPBSM:BPMs:Cedrat2:Write\par 
+IPBSM:BPMs:Cedrat2:Read\par 
+IPBSM:BPMs:Cedrat3:Write\par 
+IPBSM:BPMs:Cedrat3:Read\par 
+
+Read temperature:\par 
+IPBSM:BPMs:Temp1\par 
+IPBSM:BPMs:Temp2\par 
+
+\subsection{Troubleshooting}
+Q/A and Troubleshooting\par 
+Is there any connection problem with the chassis?\par 
+A1: Check voltage and network cable connection. If status led is in orange it stills need sometime to operate.\par 
+A2: Open the «National Instruments - Measurement \& Automation Explorer NI MAX«. Select Périphériques et Interfaces, select Périphériques réseau. If it is recognized, right-click over the peripheric and select «Réinitialiser le châssis«. A success prompt will appear some seconds after.\par 
+A3: If the ni9188 appears, but you are not able to set (unset) parameters. Push the reset button in the chassis for at least 5 seconds. It will set all parameters to default.\par 
+A4: If you still have problems, disconnect all cables for at least 10 seconds and reconnect.\par 
+A5: If required the PLC can connect directly with the PC via network cable (no crossing). Reset all parameters and reconnect.\par 
+
+Are values at the readback different from the voltage set?\par 
+A1: it is normal to have a difference up to milivolts. Difference might be larger at the extreme points in PI and in the middle range for CEDRAT.\par 
+A2: If difference is larger, it is possible that feedback system is not connected. In doubt  consult the corresponding manual.\par 
+A3: Normally all front lights in PI and CEDRAT system should be green. If not, there is a electrical problem. Most common situation is that something is disconnected. Labels have been placed per cable in order to easily identify where does it belongs.\par 
+A4: Check power voltage and compare with the operation ranges at the back of PI and CEDRAT equipment. During the installation, 220V connectors were used.\par 
+A5: Try to check that the value set by the Labview system corresponds to the value converted by the DAC. You can use a multimeter or use the ADC to test the PC-DAC-ADC chain.\par 
+
+Feedback\par 
+A1. It is possible to make adjustments on fb. Both, PI and CEDRAT. \par 
+Procedure is simpler in CEDRAT, you have to connect the PC to the Cedrat electronics USB connection. Open the program «HDPM45v16.vi», and update P, I and D control values. It requires some seconds to update the info. More specifications, consult manual.\par 
+PI: it is possible to change the feedback parameter. In order to do it, an additional board is required. Contact Laboratoire de L'accélérateur Lineaire (LAL).
+A2. If the led OVERFLOW is on. There is a cable problem. Either it is disconnected or connected to the wrong channel and the feedback goes to an overflow.\par 
+A3. CEDRAT Led is red. Cables are not correctly connected, verify the high tension cables specially. Each cable is identified with a number that has been engraved in the chamber lower flanges.\par 
+
+Temperature.\par 
+A1. Channels 0 (Cedrat) and 2 (PI) are connected to the NI 9219. If no lecture verify network connection.\par 
+A2: 0.8 to 0.4 degC difference was observed during the installation between both channels. Reasons are still under study.\par 
+
+Ground connection\par 
+A1: Ground connection is common to all dispositives. \par 

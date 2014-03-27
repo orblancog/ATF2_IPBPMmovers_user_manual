@@ -6,7 +6,7 @@ It will move two blocks:
 \item BLOCK BPMs AB
 \item BLOCK BPM C
 \end{itemize}
-This movement has two degrees of freedom: vertical (y) and lateral (x), both transverse to the beam direction. Beam crosses BPMAB first, then and empty space where Shintake monitor laser will be aligned, then crosses BPM3 and goes out of the vacuum chamber.
+This movement has two degrees of freedom: vertical (y) and lateral (x), both transverse to the beam direction. Beam crosses BPMAB first, then and empty space where Shintake monitor laser will be aligned, then crosses BPMC and goes out of the vacuum chamber.
 
 These two blocks of BPMs, moving in two directions each, are displaced by Piezo-Movers (or just movers) made by different companies. German «PI electronics« moves  BPMC and French «Cedrat Technologies« moves BPMAB.
 
@@ -17,7 +17,7 @@ Piezo mover changes its position as a function of voltage. Each one of the eight
 \begin{itemize}
  \item the mover
 \item the strain gauge
-\item manufacturer module to:
+\item the control box (manufacturer module) to:
 \begin{itemize}
  \item set piezo mover voltage (high voltage)
  \begin{itemize}
@@ -53,18 +53,6 @@ It is important to note that:
 \item When the system is OFF (0V), PI mover are at its minimum, however CEDRAT are not.
 \end{itemize}
 
-\subsection{Feedback and NO Feedback}
-There are two operation possibilities per mover: Feedback (fb) and No Feedback (no fb). It means 8 feedback loops. On each case the control module sets a voltage value on the mover and read the strain gauge to create a closed loop. However, their implementations are different on each company.
-
-PI has an analogue feedback system adjusted to the best possible performance on an individual mover (avoid piezo-mover channel interchange). Do not exchange fb/no fb while the equipment is ON. Turn it OFF before any modification. 
-Feedback is controlled by the switch number 3  on the front panel. 
-Feedback ON (left) / Feedback OFF (right)
-During operation, when feedback is ON and working properly two green LED are on (Power LED, On Target LED). When no feedback just the Power LED is green.
-
-Cedrat has a digital feedback system with PID parameters per mover. Avoid piezo-mover channel interchange. Feedback could be turn off/on by two means:
-Switch SERVO ON in the front pannel. Feedback ON(right)/Feedback OFF (left)
-Using sofware  HDPM45V16. To activate or desactivate permanently the fb.
-
 \subsection{Mover Control}
 Control per mover\par
 \begin{center}
@@ -77,14 +65,13 @@ Control per mover\par
 \end{center}
 {\tiny BLOCK AB 1mV=31.25nm, BLOCK C 1mV=30nm}\par
 
-\section{The PLC}
-Two NI9263 are used to set analogue voltage into the mover control electronics.\par
-Two NI9239 are used to read analogue voltage from the strain gauge readback.\par
-One NI9219 is used to read temperature.\par
-These modules are connected to the chassis NI9188 which is connected by network to a working station with Labview installed.
-The block chassis+NI modules is called \textbf{PLC}.\par
+\subsection{Feedback and NO Feedback}
+There are two operation possibilities per mover: Feedback (fb) and No Feedback (no fb). It means 8 feedback loops. On each case the control module sets a voltage value on the mover and read the strain gauge to create a closed loop. However, their implementations are different on each company.
 
-National instruments Chassis: NI9188
+\section{The PLC}
+Two NI9263 are used to set analogue voltage into the mover control electronics. Two NI9239 are used to read analogue voltage from the strain gauge readback. One NI9219 is used to read temperature. These modules are connected to the chassis NI9188 which is connected by network to a working station with Labview installed.
+The block chassis+NI modules is called \textbf{PLC}.\par
+\textbf{National instruments Chassis: NI9188}
 \begin{itemize}
 \item Mac Address: 0080.2f14.b777
 \item DHCP
@@ -93,7 +80,8 @@ National instruments Chassis: NI9188
 \item Host name: ipmv-plc.ip-local
 \item Net Mask: 255.255.255.0
 \item connected to ip-local during installation
-\item Chassis NI9188 can connect up to 8 modules, not all are used:
+\end{itemize}
+Chassis NI9188 can connect up to 8 modules, not all are used:
 \begin{itemize}
 \item PI
 \begin{itemize}
@@ -113,11 +101,20 @@ National instruments Chassis: NI9188
 \item PI: Channel 2
 \end{itemize}
 \end{itemize}
-\end{itemize}
+\item The other slots are not used
 \end{itemize}
 
 \section{The PC}
 It is used to control from close locations the BPM positioning system. It sets the digital values to put in the PLC and reads the digital values from the PLC channels corresponding to strain gauges.\par
+\subsection{Characteristics}
+LAL Computer (Laptop)\par
+Processor Inter Core i7 vPro\par
+Mac Address: d067.e550.620e\par
+DHCP\par
+IP address(ATF): 31.1.1.38\par
+IP address (KEK): Wifi connection (MAC registered at KEK)\par
+Net Mask: 255.255.255.0\par
+connected to ip-local during installation\par
 
 \subsection{Used Software}
 Windows 7 Français\par
@@ -127,47 +124,87 @@ Gimp 2.8\par
 Microsoft office – Excel 2013\par
 cmd\par
 Highly Dynamic and Precise motion 45 V 1.6 (HDPM45V16)– Cedrat Technologies\par
-LAL Computer (Laptop)\par
+\subsection{Folder Content Description}\par
+Path to applications and info\par
+\verb?Bureau/Actionneurs Piezo/Applis?\par
+All applications were done in Labview. Filenames gives a hint of its content (keywords used in filenames):\par
+\begin{itemize}
+\item \verb?oscilloscope?: uses de ADC to read signals
+\item \verb?generateur?: function generator, uses de DACs to produce signals
+\item \verb?Actionneurs positionnement BPMs?: activate the system displacement
+\item \verb?Ethernet?: connected by wired network,
+\item \verb?USB?: corresponds to previous version connected by USB.
+\item \verb?Verticaux groupe?: all 3 vertical mover movers are activated by one voltage control
+\item \verb?mouvements identiques?: first version of BPM displacement system (PI and CEDRAT) integrated.
+\item \verb?Jauges?: stores the strain gauges info in excel format.
+\item \verb?temp?: stores temperature info in excel format.
+\item \verb?epics?: control from epics system, Labview works as interface.
+\item \verb?Actionneurs multicycles?: several cycles over the defined voltage range are performed
+\item \verb?Cedrat, PI?: identifies the group of movers to use.
+\item \verb?Vertical, lateral fixe?: it means that one direction of movement is set (fixed) to a voltage value while the other direction varies in cycles.
+\end{itemize}
+
+\subsection{Access}
 Account: **********(not in this document)\par
 Password: *********(not in this document)\par
-Processor Inter Core i7 vPro\par
-Mac Address: d067.e550.620e\par
-DHCP\par
-IP address(ATF): 31.1.1.38\par
-IP address (KEK): Wifi connection (MAC registered at KEK)\par
-Net Mask: 255.255.255.0\par
-connected to ip-local during installation\par
-Folder Content description\par
-Path to applications and info\par
-Bureau/Actionneurs Piezo/Applis\par
-All applications were done in Labview. Title gives a hint of its content:\par
-	(keywords used in titles):
-oscilloscope: uses de ADC to read signals\par
-generateur: function generator, uses de DACs to produce signals\par
-Actionneurs positionnement BPMs: activate the system displacement\par
-Ethernet: connected by wired network,\par
-USB: corresponds to previous version connected by USB.\par
-Verticaux groupe: all 3 vertical mover movers are activated by one voltage control\par
- mouvements identiques: first version of BPM displacement system (PI and CEDRAT) integrated.\par
-Jauges: stores the strain gauges info in excel format.\par
-temp: stores temperature info in excel format.\par
-epics: control from epics system, Labview works as interface.\par
-Actionneurs multicycles: several cycles over the defined voltage range are performed\par
-Cedrat, PI: identifies the group of movers to use.\par
-Vertical, lateral fixe: it means that one direction of movement is set (fixed) to a voltage value while the other direction varies in cycles.\par
+
+\subsection{PVs}
+Epics PVs (Process Variables). Write: sets a value on the DAC. Read: reads from ADC.\par
+Channels IP:BPM-AB:Mover0 and IP:BPM-C:MoverB are for lateral movement.\par
+IP:BPM-AB:Mover0:Read\par
+IP:BPM-AB:Mover0:Write\par
+IP:BPM-AB:Mover1:Read\par
+IP:BPM-AB:Mover1:Write\par
+IP:BPM-AB:Mover2:Read\par
+IP:BPM-AB:Mover2:Write\par
+IP:BPM-AB:Mover3:Read\par
+IP:BPM-AB:Mover3:Write\par 
+IP:BPM-C:MoverB:Read\par 
+IP:BPM-C:MoverB:Write\par 
+IP:BPM-C:MoverC:Read\par 
+IP:BPM-C:MoverC:Write\par 
+IP:BPM-C:MoverD:Read\par 
+IP:BPM-C:MoverD:Write\par 
+IP:BPM-C:MoverE:Read\par 
+IP:BPM-C:MoverE:Write\par 
+IP:BPM-AB:Temp\par 
+IP:BPM-C:Temp\par 
+\vspace*{0.5cm}
+Older Epics PVs, DO NOT USE (Process Variables)\par 
+These PVs are here for documentation purposes. They are still functional but any new work should be done with previously defined PV in this document.\par 
+Write: sets a value on the DAC.\par 
+Read: reads from ADC.\par 
+Channels Cedrat0 and PIB are for lateral movement.\par 
+IPBSM:BPMs:PIB:Write\par 
+IPBSM:BPMs:PIB:Read\par 
+IPBSM:BPMs:PIC:Write\par 
+IPBSM:BPMs:PIC:Read\par 
+IPBSM:BPMs:PID:Write\par 
+IPBSM:BPMs:PID:Read\par 
+IPBSM:BPMs:PIE:Write\par 
+IPBSM:BPMs:PIE:Read\par 
+IPBSM:BPMs:Cedrat0:Write\par 
+IPBSM:BPMs:Cedrat0:Read\par 
+IPBSM:BPMs:Cedrat1:Write\par 
+IPBSM:BPMs:Cedrat1:Read\par 
+IPBSM:BPMs:Cedrat2:Write\par 
+IPBSM:BPMs:Cedrat2:Read\par 
+IPBSM:BPMs:Cedrat3:Write\par 
+IPBSM:BPMs:Cedrat3:Read\par 
+Read temperature:\par 
+IPBSM:BPMs:Temp1\par 
+IPBSM:BPMs:Temp2\par
 
 \section{The BPMs}
 \subsection{Coordinate system}\par
-\centering
-Each BPM has its own coordinates with respect to a reference system centered \textbf{electrically} and aligned with the beam
-%\begin{columns}[t]
-%\begin{column}{3.5cm}
+Each BPM has its own coordinates with respect to a reference system centered \textbf{electrically} and aligned with the beam\par
+\vspace*{0.5cm}
+% \centering
+\begin{minipage}{7cm}
   \includegraphics[scale=0.3,angle=0]{fig23.pdf}\\
   {\color{red}Beam}, {\color{forestgreen} BPMs}\\
-%\end{column}
-%\begin{column}{7cm}
-\vspace{-3.3cm}
-% \textbf{Variables}
+\end{minipage}
+\begin{minipage}{7cm}
 \begin{itemize}
  \item Beam Position
  \\$x_A,y_A,z_A$\\$x_B,y_B,z_B$\\$x_C,y_C,z_C$
@@ -176,18 +213,12 @@ Each BPM has its own coordinates with respect to a reference system centered \te
  $\theta_{Bp},\theta_{Br},\theta_{By}$\\
  $\theta_{Cp},\theta_{Cr},\theta_{Cy}$
 \end{itemize}
-%\end{column}
-%\end{columns}
+\end{minipage}\par
+All systems relate to a common \textbf{mechanical} reference system, no rotations, just translations\par
 \centering
-{\tiny All systems relate to a common \textbf{mechanical} reference system, no rotations, just translations}\\
-\includegraphics[scale=0.2,angle=0]{fig17.pdf}\\\centering
-{\tiny \textbf{One of the BPMs reference system could be chosen to coincide with the common}\\
-% \\Ideally just translations in the longitudinal direction
-}
-% \\
-
-%\begin{frame}{Movers}\centering
-{\tiny There is a set of movers to control BPM position}\vspace{-0.5cm}
+\includegraphics[scale=0.2,angle=0]{fig17.pdf}\\
+\textbf{One of the BPMs reference system could be chosen to coincide with the common}\\
+There is a set of movers to control BPM position\vspace{-0.5cm}
 \centering
 %\begin{columns}
 %\begin{column}{3.5cm}
@@ -202,7 +233,7 @@ Each BPM has its own coordinates with respect to a reference system centered \te
  \theta_r &= \theta_{r0}\\
  \theta_y &= \theta_{y0}
 \end{align*}\par
-\vspace*{-0.4cm}{\tiny All initial values are set during the IP BPMs installation}
+\vspace*{-0.4cm}All initial values are set during the IP BPMs installation\par
 %\end{column}
 %\end{columns}\vspace*{0.5cm}
 %\begin{columns}
@@ -214,9 +245,25 @@ Each BPM has its own coordinates with respect to a reference system centered \te
 % \end{column}
 %\end{columns}
 % \end{frame}
-
-
 \includegraphics[scale=0.3,angle=0]{pos_beta2}
+\raggedright
+
+\subsection{Alignment adjustment}
+\centering
+\begin{equation}
+ M_{0123}=\frac{3-V_{0123}[\text{V}]}{4} \qquad M_{BCDE}=\frac{V_{BCDE}[\text{V}]-5}{5}
+\end{equation}
+\begin{tabular}{|c||c|c|c|}\hline
+ &\multicolumn{3}{|c|}{Adjustment}\\\cline{2-4}
+ & B & A & C\\\hline\hline
+$x$[$\mu$m] & $x_{0B}+{\color{magenta}125M_0}$ & $x_{0A}+{\color{magenta}125M_0}$&${x_{0C}+\color{magenta}150M_{B}}$\\
+$y$[$\mu$m]& $y_{0B}+{\color{magenta}94.8M_{1,2}+30.2M_3}$&$y_{0A}+{\color{magenta}11.2M_{1,2}+113.8M_3}$&$y_{0C}+{\color{magenta}128.0M_{CD}+22.0M_E}$\\
+$z$[mm]&$z_{0B}$&$z_{0B}-8.08$&$z_{0B}+$?\\
+$\theta_{p}$[mrad]& $\theta_{p0B}+{\color{magenta}1.03(M_3-M_{1,2})}$ & $\theta_{p0A}+{\color{magenta}1.03(M_3-M_{1,2})}$ &$\theta_{p0C}+{\color{magenta} 2.02(M_{DC}-M_E)}$\\
+$\theta_{r}$[mrad]&$\theta_{r0B}$&$\theta_{r0A}$&$\theta_{r0C}$\\
+$\theta_{y}$[mrad]&$\theta_{y0B}$&$\theta_{y0A}$&$\theta_{y0C}$\\\hline
+\end{tabular}\par
+${\color{magenta} M_{0123,BCDE}}\in[-1,1],{\color{magenta}\Delta M_{0123,BCDE}}\geq1.25\times 10^{-2}$
 
 \subsection{Sensitivity to angle (BPMA and BPMC)}
 $1000\beta_y$ optics. 51 bunches recorded per each mover position. Maximum IQ value was picked each time.\\

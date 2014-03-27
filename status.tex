@@ -385,44 +385,19 @@ $\theta_{y0}$ [mrad]& not meas.&not meas.&not meas.\\\hline
 \end{tabular}
 \end{center}
 
-\subsection{Alignment adjustments}
-%  \includegraphics[scale=0.24,angle=0]{fig22.pdf}\\
-% \centering
-\begin{equation}
- M_{0123}=\frac{3-V_{0123}[\text{V}]}{4} \qquad M_{BCDE}=\frac{V_{BCDE}[\text{V}]-5}{5}
-\end{equation}
-{\scriptsize
-\begin{tabular}{|c||c|c|c|}\hline
- &\multicolumn{3}{|c|}{Adjustment (if BPM B is reference and centered)}\\\cline{2-4}
- & B & A & C\\\hline\hline
-$x$[$\mu$m] & ${\color{magenta}125M_0}$ & $53+{\color{magenta}125M_0}$&${180+\color{magenta}150M_{B}}$\\
-$y$[$\mu$m]& ${\color{magenta}94.8M_{1,2}+30.2M_3}$ & $-34+{\color{magenta}11.2M_{1,2}+113.8M_3}$&$-55+{\color{magenta}128.0M_{CD}+22.0M_E}$\\
-$z$[mm]& not meas. & not meas.& not meas.\\
-$\theta_{p}$[mrad]& ${\color{magenta}1.03(M_3-M_{1,2})}$ & $1.6+{\color{magenta}1.03(M_3-M_{1,2})}$ &$1.6+{\color{magenta} 2.02(M_{DC}-M_E)}$\\
-$\theta_{r}$[mrad]& not meas.&not meas.&not meas.\\
-$\theta_{y}$[mrad]& not meas.&not meas.&not meas.\\\hline
-\end{tabular}}\par
-${\color{magenta} M_{0123,BCDE}}\in[-1,1],{\color{magenta}\Delta M_{0123,BCDE}}\geq1.25\times 10^{-2}$\par
-{\tiny Using BPMB as reference,  $1000\beta_y$ optics}\par
-% \centering
-%  \includegraphics[scale=0.22,angle=0]{fig22.pdf}\\
-{\tiny Using BPMB as reference,  $1000\beta_y$ optics}\par
-\centering
-{\scriptsize
+% $-1<{\color{magenta} M_{0,1,2,3}}<1,{\color{magenta}\Delta M_{0,1,2,3}}\geq1.25\times 10^{-2}$\par
+\subsection{Possible Corrections}
+Using BPMB as reference,  $1000\beta_y$ optics\par
 \begin{tabular}{|c||c|c|c|}\hline
  &\multicolumn{3}{|c|}{Adjustment (if BPM B is reference and centered)}\\\cline{2-4}
  & B & A & C\\\hline\hline
 % $x$[$\mu$m] & ${\color{magenta}125M_0}$ & $53+{\color{magenta}125M_0}$&${180+\color{magenta}150M_{B}}$\\
 $y$[$\mu$m]& ${\color{magenta}94.8M_{1,2}+30.2M_3}$ & $-34+{\color{magenta}11.2M_{1,2}+113.8M_3}$&$-55+{\color{magenta}128.0M_{CD}+22.0M_E}$\\
 % $z$[mm]& not meas. & not meas.& not meas.\\
-$\theta_{p}$[mrad]& ${\color{magenta}1.03(M_3-M_{1,2})}$ & $1.6+{\color{magenta}1.03(M_3-M_{1,2})}$ &$1.6+{\color{magenta} 2.02(M_{DC}-M_E)}$\\\hline
+$\theta_{p}$[mrad]& ${\color{magenta}1.03(M_3-M_{1,2})}$ & $1.6+{\color{magenta}1.03(M_3-M_{1,2})}$ &$<1.6+{\color{magenta} 2.02(M_{DC}-M_E)}$\\\hline
 % $\theta_{r}$[mrad]& not meas.&not meas.&not meas.\\
 % $\theta_{y}$[mrad]& not meas.&not meas.&not meas.\\\hline
-\end{tabular}}\par
-
-% $-1<{\color{magenta} M_{0,1,2,3}}<1,{\color{magenta}\Delta M_{0,1,2,3}}\geq1.25\times 10^{-2}$\par
-\vspace*{0.5cm}
-POSSIBLE CORRECTIONS\\\raggedright
+\end{tabular}\par
 Horizontal position seems to be possible to correct.\par
 Vertical correction at least to $\mu$m precision is possible between:
 \begin{itemize}

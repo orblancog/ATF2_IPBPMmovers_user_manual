@@ -36,64 +36,17 @@ Using one which ends in Write has no effect\par
 \$ caget PVname\par
 \$ camonitor Pvname (or PVnames)\par
 
-\subsection{PVs}
-NOTES\par
-Epics PVs (Process Variables)\par
-Write: sets a value on the DAC.\par
-Read: reads from ADC.\par
-Channels IP:BPM-AB:Mover0 and IP:BPM-C:MoverB are for lateral movement.\par
+\section{Feedback and NO Feedback}
+PI has an analogue feedback system adjusted to the best possible performance on an individual mover (avoid piezo-mover channel interchange). Do not exchange fb/no fb while the equipment is ON. Turn it OFF before any modification. 
+Feedback is controlled by the switch number 3  on the front panel. 
+Feedback ON (left) / Feedback OFF (right)
+During operation, when feedback is ON and working properly two green LED are on (Power LED, On Target LED). When no feedback just the Power LED is green.
 
-IP:BPM-AB:Mover0:Read\par
-IP:BPM-AB:Mover0:Write\par
-IP:BPM-AB:Mover1:Read\par
-IP:BPM-AB:Mover1:Write\par
-IP:BPM-AB:Mover2:Read\par
-IP:BPM-AB:Mover2:Write\par
-IP:BPM-AB:Mover3:Read\par
-IP:BPM-AB:Mover3:Write\par 
+Cedrat has a digital feedback system with PID parameters per mover. Avoid piezo-mover channel interchange. Feedback could be turn off/on by two means:
+Switch SERVO ON in the front pannel. Feedback ON(right)/Feedback OFF (left)
+Using sofware  HDPM45V16. To activate or desactivate permanently the fb.\par 
 
-IP:BPM-C:MoverB:Read\par 
-IP:BPM-C:MoverB:Write\par 
-IP:BPM-C:MoverC:Read\par 
-IP:BPM-C:MoverC:Write\par 
-IP:BPM-C:MoverD:Read\par 
-IP:BPM-C:MoverD:Write\par 
-IP:BPM-C:MoverE:Read\par 
-IP:BPM-C:MoverE:Write\par 
-
-IP:BPM-AB:Temp\par 
-IP:BPM-C:Temp\par 
-
-Older Epics PVs, DO NOT USE (Process Variables)\par 
-These PVs are here for documentation purposes. They are still functional but any new work should be done with previously defined PV in this document.\par 
-Write: sets a value on the DAC.\par 
-Read: reads from ADC.\par 
-Channels Cedrat0 and PIB are for lateral movement.\par 
-
-IPBSM:BPMs:PIB:Write\par 
-IPBSM:BPMs:PIB:Read\par 
-IPBSM:BPMs:PIC:Write\par 
-IPBSM:BPMs:PIC:Read\par 
-IPBSM:BPMs:PID:Write\par 
-IPBSM:BPMs:PID:Read\par 
-IPBSM:BPMs:PIE:Write\par 
-IPBSM:BPMs:PIE:Read\par 
-
-
-IPBSM:BPMs:Cedrat0:Write\par 
-IPBSM:BPMs:Cedrat0:Read\par 
-IPBSM:BPMs:Cedrat1:Write\par 
-IPBSM:BPMs:Cedrat1:Read\par 
-IPBSM:BPMs:Cedrat2:Write\par 
-IPBSM:BPMs:Cedrat2:Read\par 
-IPBSM:BPMs:Cedrat3:Write\par 
-IPBSM:BPMs:Cedrat3:Read\par 
-
-Read temperature:\par 
-IPBSM:BPMs:Temp1\par 
-IPBSM:BPMs:Temp2\par 
-
-\subsection{Troubleshooting}
+\section{Troubleshooting}
 Q/A and Troubleshooting\par 
 Is there any connection problem with the chassis?\par 
 A1: Check voltage and network cable connection. If status led is in orange it stills need sometime to operate.\par 

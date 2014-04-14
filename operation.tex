@@ -1,24 +1,31 @@
 \chapter{Operation}
-\section{System Quick start}
-
-Initialize the system\par
-1. If any cable is hanging disconnected, first verify where it should be. All cables should be connected\par
-2. Verify that PC and PLC are connected to network. During installation, both were connected to a hub and this was connected to ip-local.\par
-3. PLC has no switch, it starts to work as soon it is connected and power is stable. If not connected, do this first. An orange LED will turn off when ready.\par
-4. Cedrat has two ON switches. One in the back (main) and one in the front (connect and disconnects all input/outputs).\par
+\section{System Quick start and shut down}
+To initialize the system\par
+\begin{enumerate}
+\item Check area. If any cable is hanging disconnected, first verify where it should be. All cables should be connected
+\item Verify that PC and PLC are connected to network. During installation, both were connected to a hub and this was connected to \verb?ip-local?.
+\item PLC has no switch, it starts to work as soon it is connected and power is stable. If not connected, do this first. An orange LED will turn off when ready.
+\item Cedrat has two ON switches. One in the back (main) and one in the front (connect and disconnects all input/outputs).\par
 PI has one ON switch in the back.\par
 PC (Laptop) has a switch on the front after opening the screen.\par
-These three can be turn on in any order.\par
-5. Let PI and Cedrat control electronics to heat up for 10 mins if first use during the day.\par
-6. If the computer went to sleep or it is the first time in the day. It will be necessary to reinitialize the PLC. Follow these instructions.\par
-1. Open the «National Instruments - Measurement \& Automation Explorer NI MAX«.\par
-2. Select Périphériques et Interfaces\par
-3. select Périphériques réseau.\par
-4. If it is recognized, right-click over the peripheric and select «Réinitialiser le châssis«. A success prompt will appear some seconds after.\par
-7. Open any of the previous programs designed in Labview to operate the system. Some of them can store the info in Excel format.\par
-1. EPICS: if you are using EPICS, use the application:\par
-"Bureau/Actionneurs Piezo/Applis Actionneurs positionnement BPMs - Ethernet - epics.vi" \par
-2. Local system: use any of the avalaible applications\par
+These three can be turn on in any order.
+\item Let PI and Cedrat control electronics to heat up for 10 mins if first use during the day.\par
+\item If the computer went to sleep or it is the first time in the day. It will be necessary to reinitialize the PLC. Follow these instructions.
+\begin{enumerate}
+\item Open the «National Instruments - Measurement \& Automation Explorer NI MAX«.
+\item Select Périphériques et Interfaces
+\item select Périphériques réseau
+\item If it is recognized, right-click over the peripheric and select «Réinitialiser le châssis«. A success prompt will appear some seconds after.
+\end{enumerate}
+\item Open any of the previous programs designed in Labview to operate the system. Some of them can store the info in Excel format
+\begin{enumerate}
+ \item  EPICS: if you are using EPICS, use the application:\par
+"Bureau/Actionneurs Piezo/Applis Actionneurs positionnement BPMs - Ethernet - epics.vi"
+\item Local system: use any of the avalaible applications\par
+\end{enumerate}
+\end{enumerate}
+                                                          
+
 
 Shut down\par
 1. Close all programs\par
@@ -45,6 +52,16 @@ During operation, when feedback is ON and working properly two green LED are on 
 Cedrat has a digital feedback system with PID parameters per mover. Avoid piezo-mover channel interchange. Feedback could be turn off/on by two means:
 Switch SERVO ON in the front pannel. Feedback ON(right)/Feedback OFF (left)
 Using sofware  HDPM45V16. To activate or desactivate permanently the fb.\par 
+
+\section{Remote}
+If not in KEK, VPN access is required\par
+\url{http://atf.kek.jp/twiki/bin/view/ATF/NetworkGlobal}\par
+Log into your account e.g.\par
+\verb?$ ssh -X my_atf_account@atf-user.kek.jp?\par
+Log into \verb?lxs-ip.atf-local?\par
+\verb?$ ssh -X lxs-ip?\par
+Start \verb?rdesktop? application\par
+\verb?$ rdesktop moverspc_ipaddress?
 
 \section{Troubleshooting}
 Q/A and Troubleshooting\par 
@@ -75,3 +92,8 @@ A2: 0.8 to 0.4 degC difference was observed during the installation between both
 
 Ground connection\par 
 A1: Ground connection is common to all dispositives. \par 
+
+
+
+
+

@@ -87,36 +87,39 @@ S &= \underbrace{(y+s_{xy}x+x\theta_r)(\cos\phi+i\sin\phi)}+\underbrace{i(s_p\th
 \end{align*}
 In the case of perfect IQ rotation ($\phi=0$), all imaginary (angle and others) component is removed from real (position) component in the $S$ signal. However, in practice this rotation could be achieved to precision set by $\Delta\phi$, then, to first order
 \begin{equation}
- S = [(y+s_{xy}x+x\theta_r)+\Delta\phi(s_p\theta_p+s_{xy}s_y\theta_y)]+i[\Delta\phi(y+s_{xy}x+x\theta_r)+(s_p\theta_p+s_{xy}s_y\theta_y)]
+S=[(y+s_{xy}x+x\theta_r)-\Delta\phi(s_p\theta_p+s_{xy}s_y\theta_y)]+i[\Delta\phi(y+s_{xy}x+x\theta_r)+(s_p\theta_p+s_{xy}s_y\theta_y)]
 \end{equation}
-where all term have been considered positive as they represent halved tolerances (positive-negative, $\pm$, errors). At this point will be only interested in the real part as it contains most of the vertical position signal.
+At this point will be only interested in the real part as it contains most of the vertical position signal.
 \begin{equation}
- \Re[S]=S_y = (y+s_{xy}x+x\theta_r)+\Delta\phi(s_p\theta_p+s_{xy}s_y\theta_y)
+ \Re[S]=S_y = (y+s_{xy}x+x\theta_r)-\Delta\phi(s_p\theta_p+s_{xy}s_y\theta_y)
 \end{equation}
 The last equation shows the contribution to vertical signal from the relative position BPM to beam.\par
 Mean value of $S_y$ signal over $m$ bunches sample will be equal to
 \begin{equation}
- \langle S_y\rangle = [y_0+(x_0+\eta\delta)(s_{xy}+\theta_{r0})]+\Delta\phi[s_p\theta_{p0}+s_{xy}s_y(\theta_{y0}+\eta'\delta)]
+ \langle S_y\rangle = [y_0+(x_0+\eta\delta)(s_{xy}+\theta_{r0})]-\Delta\phi[s_p\theta_{p0}+s_{xy}s_y(\theta_{y0}+\eta'\delta)]
 \end{equation}
 where all 0-index correspond to misaligment, $\eta$ and $\eta'$ are the dispersion and dispersion angle optic parameters, $\delta=10^{-3}$ is the energy spread, and no beam rotation is considered. $\langle S_y\rangle$ contribution to signal should be then below the values listed in Table \ref{toletab}.\par
 The signal jitter $\sigma_{S_y}^2=\langle S_y^2\rangle-\langle S_y\rangle^2$ will come from
+\begin{align*}
+ \sigma_{S_y}^2=&\sigma_{jy}^2+\sigma_{jx}^2[s_{xy}+\theta_{r0}]^2+(\Delta\phi)^2[s_p^2\sigma_{jy'}^2+s_{xy}^2s_y^2\sigma_{jx'}^2]\\
+ =&\langle y^2\rangle-y_0^2+(\langle x^2\rangle-x_0^2)[s_{xy}+\theta_{r0}]^2+(\Delta\phi)^2[s_p^2(\langle y'^2\rangle-y'^2_0 +s_{xy}^2s_y^2(\langle x'^2\rangle-x'^2_0)]
+\end{align*}
+and substracting all means effects
 \begin{equation}
- \sigma_{S_y}=\sigma_{jy}+\sigma_{jx}[s_{xy}+\theta_{r0}]+\Delta\phi[s_p\sigma_{jy'}+s_{xy}s_y\sigma_{jx'}]
+ \sigma_{S_y}^2=\langle y^2\rangle+\langle x^2\rangle[s_{xy}+\theta_{r0}]^2+(\Delta\phi)^2[s_p^2\langle y'^2\rangle+s_{xy}^2s_y^2(\langle x'^2\rangle)]
 \end{equation}
-and for a single bunch, the signal jitter will be
+In the case of one single bunch and known substracted means, the signal jitter will be
 \begin{equation}
- S_j=y_j-y_0+(x_j-x_0)(s_{xy}+\theta_{r0})+\Delta\phi[s_p(y'_j-y'_0)+s_{xy}s_y(x'_j-x_0)]
+ %S_j=y_j-y_0+(x_j-x_0)(s_{xy}+\theta_{r0})+\Delta\phi[s_p(y'_j-y'_0)+s_{xy}s_y(x'_j-x_0)]
+ S_j=y_j+x_j(s_{xy}+\theta_{r0})+|\Delta\phi|(s_py'_j+s_{xy}s_yx'_j)
 \end{equation}
-if we substract all mean effects
+from where it is possible to conclude that roll angle $\theta_{r0}$ and phase shifter precision $\Delta\phi$ limit directly the jitter measurement.\par
+Isolation X-Y (1/$s_{xy}$) was measured to be under 50dB (Pin/Pout$<10^{-5}=3.162\times10^{-3}$ voltage isolation), sensitivity to pitch ($s_p$) was measured to be $3.2\mu$m/mrad, and sensitivity to yaw ($s_y$) is 2.9$\mu$m/mrad estimated in similar way to $s_p$. Precision on phase rotation ($\Delta\phi$) is still to be determined. Expresing the previous equation in nm and $\mu$rad, we obtain
 \begin{equation}
- S_j=y_j+x_j(s_{xy}+\theta_{r0})+\Delta\phi[s_py'_j+s_{xy}s_yx'_j]
+ S_j=y_j+x_j(1.880\times10^{-3}+10^{-6}\theta_{r0})+|\Delta\phi|(3.2y'_j+5.453\times10^{-3}x'_j)
 \end{equation}
-from where it is possible to conclude that 
-
-
+where  the BPM vertical (3.7mV/$\mu$m/nC) and horizontal (2.2mV/$\mu$m/nC) sensitivities have been used to translate voltage isolation X-Y to position scale.
 \subsection{Mechanical resolution}
-Isolation X-Y (1/$s_{xy}$) was measured to be under 50dB (Pin/Pout$<10^{-5}$), sensitivity to pitch ($s_p$) was measured to be $3.2\mu$m/mrad, and sensitivity to yaw ($s_y$) is 2.9$\mu$m/mrad estimated in similar way to $s_p$. Precision on phase rotation ($\Delta\phi$) is still to be determined.\par
-
 From this point, it will be assumed that mechanical positions could be measured within an absolute error shown in Table \ref{mechprec}.\par
 \begin{table}[htb]
 \begin{center}

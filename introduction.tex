@@ -96,9 +96,25 @@ where all term have been considered positive as they represent halved tolerances
 The last equation shows the contribution to vertical signal from the relative position BPM to beam.\par
 Mean value of $S_y$ signal over $m$ bunches sample will be equal to
 \begin{equation}
- \langle S_y\rangle = [y_0+s_{xy}(x_0+\eta\delta)+(x_0+\eta\delta)\theta_{r0}]+\Delta\phi[s_p\theta_{p0}+s_{xy}s_y(\theta_{y0}+\eta'\delta)]
+ \langle S_y\rangle = [y_0+(x_0+\eta\delta)(s_{xy}+\theta_{r0})]+\Delta\phi[s_p\theta_{p0}+s_{xy}s_y(\theta_{y0}+\eta'\delta)]
 \end{equation}
 where all 0-index correspond to misaligment, $\eta$ and $\eta'$ are the dispersion and dispersion angle optic parameters, $\delta=10^{-3}$ is the energy spread, and no beam rotation is considered. $\langle S_y\rangle$ contribution to signal should be then below the values listed in Table \ref{toletab}.\par
+The signal jitter $\sigma_{S_y}^2=\langle S_y^2\rangle-\langle S_y\rangle^2$ will come from
+\begin{equation}
+ \sigma_{S_y}=\sigma_{jy}+\sigma_{jx}[s_{xy}+\theta_{r0}]+\Delta\phi[s_p\sigma_{jy'}+s_{xy}s_y\sigma_{jx'}]
+\end{equation}
+and for a single bunch, the signal jitter will be
+\begin{equation}
+ S_j=y_j-y_0+(x_j-x_0)(s_{xy}+\theta_{r0})+\Delta\phi[s_p(y'_j-y'_0)+s_{xy}s_y(x'_j-x_0)]
+\end{equation}
+if we substract all mean effects
+\begin{equation}
+ S_j=y_j+x_j(s_{xy}+\theta_{r0})+\Delta\phi[s_py'_j+s_{xy}s_yx'_j]
+\end{equation}
+from where it is possible to conclude that 
+
+
+\subsection{Mechanical resolution}
 Isolation X-Y (1/$s_{xy}$) was measured to be under 50dB (Pin/Pout$<10^{-5}$), sensitivity to pitch ($s_p$) was measured to be $3.2\mu$m/mrad, and sensitivity to yaw ($s_y$) is 2.9$\mu$m/mrad estimated in similar way to $s_p$. Precision on phase rotation ($\Delta\phi$) is still to be determined.\par
 
 From this point, it will be assumed that mechanical positions could be measured within an absolute error shown in Table \ref{mechprec}.\par
@@ -128,6 +144,7 @@ Assuming that angles can be estimated from two coplanar points in the BPM, then,
   \includegraphics[angle=0,scale=0.4]{angles.jpg}\caption{Points of position and angle control.}\label{PAcontrol}
  \end{center}
 \end{figure}
+\subsection{Measurement cases}
 Using the nominal optics 1BX1BY, there are two relevant cases:
 \begin{itemize}
  \item Largest beam size: it is at IPBPMA, having 57.657$\mu$m of vertical beam size. Jitter will be around 11.531$\mu$m (20\%)and 5.766$\mu$m (10\%). Both cases are close or inside of the 1nm resolution.

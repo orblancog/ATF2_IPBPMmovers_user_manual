@@ -283,3 +283,45 @@ From columns <ADC resolution, nm/ADC> and <maximum/Dynamic Range> for beam inten
   \includegraphics[angle=0,scale=0.7]{dynamic-range-resolution-double-port.pdf}\caption{Dynamic range resolution double port, KNU electronics.}\label{f-dynrange-KNU}
  \end{center}
 \end{figure}
+
+\section{Calibration factor}
+Calibration factor. Having a system like in figure \ref{f-BPMangles}
+\begin{figure}[htb]
+ \begin{center}
+  \includegraphics[angle=0,scale=0.4]{BPMangles.pdf}\caption{BPM angles. In blue, the movers axis. In black the BPM. In red the beam. $\beta$ is the angle of the BPM with respect to the movers. $\alpha$ is the angle of the beam with respect to the movers.}\label{f-BPMangles}
+ \end{center}
+\end{figure}
+In order to know the calibration constant, the BPM is displaced by $L_m$. The distance measured by the BPM is $L_{BPM}$. See Fig. \ref{f-BPMcal}
+\begin{figure}[htb]
+ \begin{center}
+  \includegraphics[angle=0,scale=0.4]{BPMcal.pdf}\caption{Displacement from the center. Movers displace by $L_m$. Cavity sees $L_{BPM}$}\label{f-BPMcal}
+ \end{center}
+\end{figure}
+\begin{align*}
+ L_{BPM}=&L_m\left(\cos\beta+\sin\beta\tan(\alpha+\beta)\right)\\
+ \approx&L_m(1+\alpha\beta+\beta^2)\label{eq-BPMcal}
+\end{align*}
+In order to keep the calibration constant within $10^{-3}\sim10^{-4}$ precision, the angles $\alpha$ and $\beta$ should be inside the dashed area in Fig. \ref{f-imagealfabeta}.
+\begin{figure}[htb]
+ \begin{center}
+  \includegraphics[angle=-90,scale=0.4]{imagealfabeta.pdf}\caption{$\alpha$ and $\beta$ should be inside the dashed area to keep the calibration value within $10^{-3}$ precision.}\label{f-imagealfabeta}
+ \end{center}
+\end{figure}
+If the movers are used to induce an angle $\gamma$ as in Fig. \ref{f-BPManglesrot}. Then, the distance measured is now as in Eq. (\ref{eq-BPMcalrot}).
+\begin{equation}
+ L_{BPM}\approx L_m[1+\alpha(\beta+\gamma)+(\beta+\gamma)^2]\label{eq-BPMcalrot}
+\end{equation}
+\begin{figure}[htb]
+ \begin{center}
+  \includegraphics[angle=0,scale=0.4]{BPManglesrot.pdf}\caption{$\gamma$ angle rotation over the BPM. The only effect on distance measured is to add $\gamma$ to $\beta$.}\label{f-BPManglesrot}
+ \end{center}
+\end{figure}
+It will be assumed that $\beta+\gamma$ and $\alpha$ are inside the $10^{-3}$ resolution area.\par
+During the NOV-DEC 2013 run, and offset on each movers block was introduce by putting shims. Previous state was checked at LAL under $5\mu$m vertical precision by using 3D machine over the each block dynamic range. However, BPM centers might be displaced by $\sim50\mu$m due to fabrication tolerances. See \ref{f-BPMoffsetNovDec}.\par
+\begin{figure}[htb]
+ \begin{center}
+  \includegraphics[angle=0,scale=0.4]{BPMoffsetNovDec.pdf}\caption{LAL aligment check before installation is used as reference (bottom blue line) because vertical dynamic range was checked to be centered under 5$\mu$m precision. However, BPM centers could be displaced by $\sim 50\mu$m due to fabrication tolerances. Angle induced in Block C should have negligible impact over the measured calibration factors as it only adds on $\alpha$ ($\alpha$+5.3mrad).}\label{f-BPMoffsetNovDec}
+ \end{center}
+\end{figure}
+The 5.3mrad angle brings the BPMC center additionally $\mu$m down.\par
+

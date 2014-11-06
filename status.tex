@@ -1,77 +1,92 @@
 \chapter{Status}
 \section{Linearity}
 \subsection{Vertical displacement}
-Measuring system\par
-An interferometer was used to measure BPM position. As the head is located over the BPM, positive displacement implies negative change in the intereferometer lecture.\par
-\hspace*{1.4cm}\includegraphics[angle=180,scale=0.2]{interfero.jpg}\par
+Measuring system is composed by an interferometer measuring BPM vertical position. As the head is located over the BPM, positive displacement implies negative change in the intereferometer lecture.\par
 \begin{figure}[htb]
-\centering
- \includegraphics[scale=0.3,angle=-90]{image01.pdf}\caption{PI movers linearity}\label{f-LinPI01}
+\begin{center}
+\includegraphics[angle=180,scale=0.4]{interfero.jpg}\caption{Picture of SIOS interferometer used to test the movers. Precision is below 1nm.}\label{f-interfero}
+\end{center}
+\end{figure}\par
+Test consist in 4 cycles, two descending and two rising over the total range divided in 100 steps. Time between steps is 3s.\par
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[scale=0.3,angle=-90]{image01.pdf}\caption{PI movers linearity.}\label{f-LinPI01}
+\end{center}
 \end{figure}
 \subsubsection{PI without and with feedback}
 Four cycles (two going up, two going down),
 range (0$\sim$10V, 0$\sim$300$\mu$m)\par
-\includegraphics[angle=-90,scale=0.15]{image11.pdf}
-\includegraphics[angle=-90,scale=0.15]{image12.pdf}
-\includegraphics[angle=-90,scale=0.15]{image11a.pdf}\\
-\includegraphics[angle=-90,scale=0.15]{image01.pdf}
-\includegraphics[angle=-90,scale=0.15]{image02.pdf}
-\includegraphics[angle=-90,scale=0.15]{image01a.pdf}\\
- \includegraphics[angle=-90,scale=0.16]{image14.pdf}\\
- \includegraphics[angle=-90,scale=0.16]{image04.pdf}
- \includegraphics[angle=-90,scale=0.16]{image05c.pdf}\\
- {\tiny Each step is 0.1V (3$\mu$m), sampled 15 times (over 3 s).}\\ 
-{\tiny Last 10 points were used to calculate the mean on each step, error over the mean of each step: less than 3nm.}\par
-Linearity (with fb)\par
-\includegraphics[angle=-90,scale=0.22]{image06e.pdf}
+\begin{figure}
+ \begin{center}
+\includegraphics[angle=-90,scale=0.20]{image11.pdf}
+\includegraphics[angle=-90,scale=0.20]{image12.pdf}
+\includegraphics[angle=-90,scale=0.20]{image11a.pdf}\\
+\includegraphics[angle=-90,scale=0.20]{image01.pdf}
+\includegraphics[angle=-90,scale=0.20]{image02.pdf}
+\includegraphics[angle=-90,scale=0.20]{image01a.pdf}\caption{PI movers linearity test without FB (up) and with FB (down). Non linear effect is visible for the movers without FB. Temperature was registered.}\label{f-PIlinearity}
+\end{center}
+\end{figure}
+\begin{figure}
+ \begin{center}
+ \includegraphics[angle=-90,scale=0.30]{image14.pdf}
+ \includegraphics[angle=-90,scale=0.30]{image04.pdf}
+ \caption{Settling speed without feedback (left) and with feedback for PI movers.}
+% \includegraphics[angle=-90,scale=0.16]{image05c.pdf}
+\end{center}
+\end{figure}
+Each step is 0.1V (3$\mu$m), sampled 15 times (over 3 s). Last 10 points were used to calculate the mean on each step, error over the mean of each step: less than 3nm. System can respond at 3$\mu$m$/$s\par
+\begin{figure}
+\begin{center}
+ \includegraphics[angle=-90,scale=0.50]{image06e.pdf}\caption{Residual non-linearity (with fb), after substraction of linear fitting on PI movers.}\label{f-PIlinres}
+\end{center}
+\end{figure}
+\begin{table}
+\begin{center}
 \begin{tabular}[]{|c|c|c|}\hline
  Cycle & Slope[nm/V] & Offset[nm] \\\hline
  {\color{red}1} & $-30011 \pm 1$& $-191\pm9$\\
 {\color{green}2} & $-29997 \pm 1$& $-204\pm9$ \\
 {\color{blue}3} & $-29982 \pm 2$& $-502\pm9$\\
 {\color{magenta}4} & $-30018 \pm2$ & $84\pm11$\\\hline
-\end{tabular}\\Slope mean = $30002\pm7$\\Previous result by Frédéric Bogard showed $\sim$120nm/0.1$^\circ$C (if no delay)\\
-%$\rightarrow\pm4\times10^{-4}$ when $\Delta$T = 0.1$^\circ$C
- %Offsets and slope variations might come from temperature deviation.
- 
-Minimum step and speed (with fb)
-Each step is 0.1V (3$\mu$m), sampled 15 times (over 3 s)\\
-\includegraphics[angle=-90,scale=0.22]{image04.pdf}
-\includegraphics[angle=-90,scale=0.22]{image05.pdf}\\
-system can respond at 3$\mu$m$/$s\\
-Minumum current step is 18nm.
-
+\end{tabular}\caption{Fit result per cycle in PI movers with FB.}\label{t-PIfit}
+\end{center}
+\end{table}
+Slope mean = $30002\pm7\mu$m/V, however, previous result by Frédéric Bogard showed $\sim$120nm/0.1$^\circ$C, if no thermal response delay.
 \subsubsection{Cedrat without and with feedback}
-Four cycles (two going up, two going down), range (-1$\sim$7V, 0$\sim$250$\mu$m)\par
-\includegraphics[angle=-90,scale=0.15]{image31.pdf}
-\includegraphics[angle=-90,scale=0.15]{image32.pdf}
-\includegraphics[angle=-90,scale=0.15]{image31a.pdf}\\
-\includegraphics[angle=-90,scale=0.15]{image21.pdf}
-\includegraphics[angle=-90,scale=0.15]{image22.pdf}
-\includegraphics[angle=-90,scale=0.15]{image21a.pdf}\par
- \includegraphics[angle=-90,scale=0.16]{image34.pdf}\\
- \includegraphics[angle=-90,scale=0.16]{image24.pdf}
- \includegraphics[angle=-90,scale=0.16]{image25c.pdf}\\
-{\tiny Each step is 0.1V ($\sim3.125\mu$m), sampled 15 times (over 3 s).}
-{\tiny Last 10 points were used to calculate the mean on each step\\Error over the mean of each step: less than 15nm.}\par
-
-Linearity (with fb)
-\includegraphics[angle=-90,scale=0.22]{image26e.pdf}
+Four cycles (two going up, two going down), range (-1$\sim$7V, 0$\sim$250$\mu$m). Each step is 0.1V ($\sim3.125\mu$m), sampled 15 times (over 3 s). Last 10 points were used to calculate the mean on each step\\Error over the mean of each step: less than 15nm. Slope mean = $-31015\pm12$($\pm42$) $\mu$m/V, unknown temperature effect. System can respond at 3$\mu$m$/$s\par
+\begin{figure}
+\begin{center}
+\includegraphics[angle=-90,scale=0.20]{image31.pdf}
+\includegraphics[angle=-90,scale=0.20]{image32.pdf}
+\includegraphics[angle=-90,scale=0.20]{image31a.pdf}\\
+\includegraphics[angle=-90,scale=0.20]{image21.pdf}
+\includegraphics[angle=-90,scale=0.20]{image22.pdf}
+\includegraphics[angle=-90,scale=0.20]{image21a.pdf}\caption{Cedrat movers linearity test without FB (up) and with FB (down). Non linear effect is visible for the movers without FB. Temperature was registered.}\label{f-Cedratlinearity}
+\end{center}
+\end{figure}
+\begin{figure}
+\begin{center}
+ \includegraphics[angle=-90,scale=0.30]{image34.pdf}
+ \includegraphics[angle=-90,scale=0.30]{image24.pdf}\caption{Settling speed without feedback (left) and with feedback for Cedrat movers.}\label{f-Cedratstep}
+%  \includegraphics[angle=-90,scale=0.16]{image25c.pdf}
+\end{center}
+\end{figure}
+\begin{figure}
+ \begin{center}
+\includegraphics[angle=-90,scale=0.50]{image26e.pdf}\caption{Residual non-linearity (with fb), after substraction of linear fitting on Cedrat movers.}\label{f-Cedratlinres}
+\end{center}
+\end{figure}
+\begin{table}
+ \begin{center}
 \begin{tabular}[]{|c|c|c|}\hline
  Cycle & Slope[nm/V] & Offset[nm] \\\hline
  {\color{red}1} & $30988 \pm 41$& $-18670\pm154$\\
 {\color{green}2} & $31039 \pm 42$& $-19092\pm154$ \\
 {\color{blue}3} & $30993\pm 41$& $-18547\pm156$\\
 {\color{magenta}4} & $31040 \pm42$ & $-18935\pm154$\\\hline
-\end{tabular}\\Slope mean = $31015\pm12$($\pm42$)\\Unknown temperature effect\\
-%$\rightarrow\pm4\times10^{-4}$ when $\Delta$T = 0.1$^\circ$C
- %Offsets and slope variations might come from temperature deviation.
-Minimum step and speed (with fb)
-\includegraphics[angle=-90,scale=0.22]{image24.pdf}
-\includegraphics[angle=-90,scale=0.22]{image25.pdf}\\
-System can respond at 3$\mu$m$/$s\\
-Minimum current step is 80nm.
-
+\end{tabular}\caption{Fit result per cycle in Cedrat movers.}\label{t-Cedratslopes}
+\end{center}
+\end{table}
 \subsubsection{From Gauges}
 Lateral fixed
  \includegraphics[angle=-90,scale=0.20]{image_ai_01.pdf}

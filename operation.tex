@@ -16,6 +16,7 @@ These three can be turn on in any order.
 \item Select Périphériques et Interfaces
 \item select Périphériques réseau
 \item If it is recognized, right-click over the peripheric and select «Réinitialiser le châssis«. A success prompt will appear some seconds after.
+\item Reserve the chassis from this PC.
 \end{enumerate}
 \item Open any of the previous programs designed in Labview to operate the system. Some of them can store the info in Excel format
 \begin{enumerate}
@@ -25,8 +26,6 @@ These three can be turn on in any order.
 \end{enumerate}
 \end{enumerate}
                                                           
-
-
 Shut down\par
 1. Close all programs\par
 2. Shut down PC, Cedrat and PI control electronics in any order.\par
@@ -42,6 +41,10 @@ Remember to use a PV which ends in Read.\par
 Using one which ends in Write has no effect\par
 \$ caget PVname\par
 \$ camonitor Pvname (or PVnames)\par
+
+\section{If the PC has been replaced}
+The new MAC address should be declared to the ATF staff in order to get access to ip-local server.\par
+In order to get access to the DAQ (chassis) from the new PC, the DAQ must be reset by pressing at least 10s the small RESET button. This will erase the previous reservation. Then, the DAQ can be accessed and Reserved for the new PC.
 
 \section{Feedback and NO Feedback}
 PI has an analogue feedback system adjusted to the best possible performance on an individual mover (avoid piezo-mover channel interchange). Do not exchange fb/no fb while the equipment is ON. Turn it OFF before any modification. 
